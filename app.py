@@ -4,41 +4,10 @@ import numpy as np
 
 
 st.header('Book Recommender System Using Machine Learning')
-try:
-    with open('artifacts/model.pkl', 'rb') as file:
-        model = pickle.load(file)
-except Exception as e:
-    print("Error loading the pickled model:", e)
-try:
-    with open('artifacts/books_name.pkl', 'rb') as file:
-        books_name = pickle.load(file)
-except FileNotFoundError:
-    print("Books data file not found. Please ensure the file exists.")
-    # Here you might want to assign some default or empty value to 'books_name'
-    books_name = []
-except Exception as e:
-    print("Error loading 'books_name.pkl':", e)
-    # Handle other specific exceptions as needed
-
-try:
-    with open('artifacts/final_rating.pkl', 'rb') as file:
-        final_rating = pickle.load(file)
-except FileNotFoundError:
-    print("Rating data file not found. Please ensure the file exists.")
-    final_rating = []
-except Exception as e:
-    print("Error loading 'final_rating.pkl':", e)
-    # Handle other specific exceptions as needed
-
-try:
-    with open('artifacts/book_pivot.pkl', 'rb') as file:
-        book_pivot = pickle.load(file)
-except FileNotFoundError:
-    print("Book pivot data file not found. Please ensure the file exists.")
-    book_pivot = []
-except Exception as e:
-    print("Error loading 'book_pivot.pkl':", e)
-    # Handle other specific exceptions as needed
+model = pickle.load(open('artifacts/model.pkl','rb'))
+book_names = pickle.load(open('artifacts/book_names.pkl','rb'))
+final_rating = pickle.load(open('artifacts/final_rating.pkl','rb'))
+book_pivot = pickle.load(open('artifacts/book_pivot.pkl','rb'))
 
 
 def fetch_poster(suggestion):
@@ -62,7 +31,6 @@ def fetch_poster(suggestion):
 
 
 def recommend_book(book_name):
-    global book_pivot
     books_list = []
     book_id = np.where(book_pivot.index == book_name)[0][0]
     distance, suggestion = model.kneighbors(book_pivot.iloc[book_id,:].values.reshape(1,-1), n_neighbors=6 )
@@ -79,7 +47,7 @@ def recommend_book(book_name):
 
 selected_books = st.selectbox(
     "Type or select a book from the dropdown",
-    books_name
+    book_names
 )
 
 if st.button('Show Recommendation'):
