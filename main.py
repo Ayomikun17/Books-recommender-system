@@ -7,10 +7,10 @@ import streamlit as st
 st.header('My Recommender system init')
 
 # Importing the artifacts from Jupyter Notebook
-model = pd.read_pickle("data/artifacts/model.pkl")
-books_name = pd.read_pickle("data/artifacts/books_name.pkl")
-final_rating = pd.read_pickle("data/artifacts/final_rating.pkl")
-book_pivot = pd.read_pickle("data/artifacts/book_pivot.pkl")
+model = pd.read_pickle("artifacts/model.pkl")
+books_name = pd.read_pickle("artifacts/books_name.pkl")
+final_rating = pd.read_pickle("artifacts/final_rating.pkl")
+book_pivot = pd.read_pickle("artifacts/book_pivot.pkl")
 
 def fetch_poster(suggestion):
     #Getting the name, index and image url of the book
