@@ -1,14 +1,32 @@
 import pickle
 import streamlit as st 
-import pandas as pd
 import numpy as np
 
 st.header('Books Recommender System')
-model = pd.read_pickle("artifacts/model.pkl")
-books_name = pd.read_pickle("artifacts/books_name.pkl")
-final_rating = pd.read_pickle("artifacts/final_rating.pkl")
-book_pivot = pd.read_pickle("artifacts/book_pivot.pkl")
+try:
+    with open('artifacts/model.pkl', 'rb') as file:
+        model = pickle.load(file)
+except Exception as e:
+    print("Error loading the pickled model:", e)
 
+try:
+    with open('artifacts/books_name.pkl', 'rb') as file:
+        books_name = pickle.load(file)
+except Exception as e:
+    print("Error loading 'books_name.pkl':", e)
+
+try:
+    with open('artifacts/final_rating.pkl', 'rb') as file:
+        final_rating = pickle.load(file)
+except Exception as e:
+    print("Error loading 'final_rating.pkl':", e)
+
+try:
+    with open('artifacts/book_pivot.pkl', 'rb') as file:
+        book_pivot = pickle.load(file)
+except Exception as e:
+    print("Error loading 'book_pivot.pkl':", e)
+    
 def fetch_poster(suggestion):
     #Getting the name, index and image url of the book
     book_name = []
