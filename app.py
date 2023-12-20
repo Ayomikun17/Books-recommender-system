@@ -62,6 +62,7 @@ def fetch_poster(suggestion):
 
 
 def recommend_book(book_name):
+    global book_pivot
     books_list = []
     book_id = np.where(book_pivot.index == book_name)[0][0]
     distance, suggestion = model.kneighbors(book_pivot.iloc[book_id,:].values.reshape(1,-1), n_neighbors=6 )
