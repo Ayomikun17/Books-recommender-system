@@ -1,6 +1,7 @@
 import pickle
 import streamlit as st 
 import numpy as np
+import sklearn
 
 st.header('Books Recommender System')
 try:
@@ -26,7 +27,7 @@ try:
         book_pivot = pickle.load(file)
 except Exception as e:
     print("Error loading 'book_pivot.pkl':", e)
-    
+
 def fetch_poster(suggestion):
     #Getting the name, index and image url of the book
     book_name = []
@@ -89,3 +90,4 @@ if st.button('Show Recommendation'):
     with col5:
         st.text(recommendation_books[5])
         st.image(poster_url[5])
+
