@@ -7,7 +7,7 @@ st.header('Book Recommender System Using Machine Learning')
 with open('artifacts/model.pkl', 'rb') as file:
     model = pickle.load(file)
 
-with open('artifacts/book_names.pkl', 'rb') as file:
+with open('artifacts/books_name.pkl', 'rb') as file:
     book_names = pickle.load(file)
 
 with open('artifacts/final_rating.pkl', 'rb') as file:
