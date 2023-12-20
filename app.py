@@ -63,7 +63,7 @@ def recommend_book(book_name, book_pivot):
 selected_books = st.selectbox('Type or select a book', books_name)
 
 if st.button('Show Recommendation'):
-    recommendation_books, poster_url = recommend_book(selected_books)
+    recommendation_books, poster_url = recommend_book(selected_books, book_pivot)
     col1, col2, col3, col4, col5 = st.columns(5)
 
 
