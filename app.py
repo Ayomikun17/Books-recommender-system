@@ -78,7 +78,7 @@ def recommend_book(book_name):
 
 selected_books = st.selectbox(
     "Type or select a book from the dropdown",
-    book_names
+    books_name
 )
 
 if st.button('Show Recommendation'):
